@@ -1,60 +1,61 @@
 1. Write a query to count the number of products across all orders received by the
-warehouse system today (the PostgreSQL database).
+Warehouse system today (the PostgreSQL database).
 
 
 select count(distinct tbl1.prd) from 
 (select a.order_id as ord,b.product_id as prd from orders a inner join order_products b 
 on a.order_id = b.order_id where date(a.received) = current_date) tbl1;
 
-###################################################################
-
+ #####################################################################################################
+ 
+ 
 2. Given an order_id, how would you find its last GPS coordinates?
 
 
 select tbl1.ord,tbl1.area from (select a.product_id as prd,a.order_id as ord,b.area as area from order_products a inner join product_locations b 
 on a.product_id = b.product_id) tbl1 where tbl1.ord IN ("Given order id"); 
 
-####################################################################
-
+ #####################################################################################################
+ 
 3. What do you think is the most serious problem among these systems, and why?
 
-As on online retailer site, I could clasified the fuctionality of this site into three categories.
+As on online retailer site, I could classified the functionality of this site into three categories.
       1. Tracking the transaction
-      2. Product catalog
+      2. Product catalogue
       3. Delivery system 
 
-from the above catagories, i think the following items are Missing.
+from the above categories, i think the following items are Missing.
 
-     1.payment related information
-     2. Indepth info about prodcut
-     3. As on online site.Customer should have contact number/email id to track the order.
+     1. Payment related information
+     2. In-depth info about product
+     3. as of an online site. Customer should have contact number/email id to track the order.
      4. Cancel/update the order.
 
-Please note: I am not considering about customer review/feedback. Because we are not doing any data anaytics stuffs over here. 
+Please note: I am not considering about customer review/feedback. Because we are not doing any data analytics stuffs over here. 
 So Ignore those part.
 
 I would give 3 out of 5 for using MySQL as primary database.
 
-Because In Mysql need lot of enginering work to do optimize the performnce and scalablity.
-And also i have the question about data securities  and the performance while the network trafic time.
+Because In Mysql need lot of engineering work to do optimize the performance and scalability.
+And also i have the question about data securities and the performance while the network traffic time.
 
 The major problem i could see here is data synchronization between Mysql and POSTGRE. If there is any network failure occur.
-We  might loss data occuracy. Our delivery system fetch the data from postgre. If any update happens on mysql.It will not reflcet in postgre. 
-that time delivery system using old data.
+We might loss data accuracy. Our delivery system fetch the data from postgre. If any update happens on mysql. It will not reflect in postgre. 
+That time delivery system using old data.
 
-To give the proper online retaile site by using these system need lot of engineering effect.
+To give the proper online retail site by using these system need lot of engineering effect.
 
- #########################################################################
-
-4.Why do you think this fictional company chose Redis for their delivery system,
+ #####################################################################################################
+ 
+4.Why do you think this fictional company chose Redis for their delivery system?
 and is it a good choice
 
-I whould say its good choice.Because
+I would say its good choice. Because
 
 REDIS is Data Structure Server, provides In memory KEY-VALUE store,
 and also have the cache layer and message broken.
 
-REDIS provid high latency to pass the status using PUB/SUB. 
+REDIS provide high latency to pass the status using PUB/SUB. 
 
 
 
